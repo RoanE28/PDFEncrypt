@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFEncrypt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
         
+        Title="MainWindow" Height="276" Width="586">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Background="Transparent">
+                <MenuItem Header="_File" >
+                    <MenuItem Header="_Open" Click="OnOpenfile"/>
+                    <MenuItem Header="_Secure" />
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Settings">
+                </MenuItem>
+                <MenuItem Header="_About">
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Label Content="Original File" Margin="10,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <TextBox Height="23" TextWrapping="Wrap" Text="" Name="txtOriginalFile" IsReadOnly="True" Margin="10,25,40,0" Background="#FFEEEEEE"  />
+                <Button Content="..." HorizontalAlignment="Right" Margin="5,25,10,0" Width="25" Click="OnOpenfile"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Label Content="Secured File Output" Margin="10,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <TextBox Height="23" TextWrapping="Wrap" Text="" Name="txtSecuredFile" IsReadOnly="True" Margin="10,25,40,0" Background="#FFEEEEEE"  />
+                <Button Content="..." HorizontalAlignment="Right" Margin="5,25,10,0" Width="25" Click="OnSavefile"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button Content="Secure" HorizontalAlignment="Right" Margin="0,20, 10, 0" Width="75" Click="OnSecureFile"/>
+            </Grid>
+
+        </Grid>
+
     </Grid>
 </Window>

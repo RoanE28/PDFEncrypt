@@ -5604,9 +5604,9 @@
             
             <pre>
                     subject CHOICE {
-                     baseCertificateID [0] IssuerSerial,
+                     baseCertificateID [0] EXPLICIT IssuerSerial,
                      -- associated with a Public Key Certificate
-                     subjectName [1] GeneralNames },
+                     subjectName [1] EXPLICIT GeneralNames },
                      -- associated with a name
             </pre>
             </p>
@@ -25633,9 +25633,10 @@
         </member>
         <member name="M:Org.BouncyCastle.X509.X509Certificate.GetEncoded">
             <summary>
-            Return a Der encoded version of this certificate.
+            Return the DER encoding of this certificate.
             </summary>
-            <returns>A byte array.</returns>
+            <returns>A byte array containing the DER encoding of this certificate.</returns>
+            <exception cref="T:Org.BouncyCastle.Security.Certificates.CertificateEncodingException">If there is an error encoding the certificate.</exception>
         </member>
         <member name="M:Org.BouncyCastle.X509.X509Certificate.Verify(Org.BouncyCastle.Crypto.AsymmetricKeyParameter)">
             <summary>
@@ -25731,6 +25732,13 @@
             <param name="verifierProvider">An appropriate provider for verifying the CRL's signature.</param>
             <returns>True if the signature is valid.</returns>
             <exception cref="T:System.Exception">If verifier provider is not appropriate or the CRL algorithm is invalid.</exception>
+        </member>
+        <member name="M:Org.BouncyCastle.X509.X509Crl.GetEncoded">
+            <summary>
+            Return the DER encoding of this CRL.
+            </summary>
+            <returns>A byte array containing the DER encoding of this CRL.</returns>
+            <exception cref="T:Org.BouncyCastle.Security.Certificates.CrlException">If there is an error encoding the CRL.</exception>
         </member>
         <member name="M:Org.BouncyCastle.X509.X509Crl.ToString">
              Returns a string representation of this CRL.
