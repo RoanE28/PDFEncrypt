@@ -162,10 +162,6 @@ namespace PDFEncrypt
             this.Close();
         }
 
-        public void OnAbout(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void ClearCurrentFileInfo()
         {
             txtOriginalFile.Text = "";
@@ -177,6 +173,18 @@ namespace PDFEncrypt
             _securedFileName = "";
             txtSecuredFile.Text = "";
             txtSecuredFile.CaretIndex = 0;
+        }
+
+        public void OnViewImageLicense(object sender, RoutedEventArgs e)
+        {
+            ImageLicense imageLicense = new ImageLicense();
+            imageLicense.ShowDialog();
+        }
+
+        public void OnAbout(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
         }
 
     }

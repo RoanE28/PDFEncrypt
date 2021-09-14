@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PDFEncrypt"
         mc:Ignorable="d"
         
-        Title="PDF Encrypt" Height="230.357" Width="586" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="PDF Encrypt" Height="230.357" Width="586" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Icons/pdf.png">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.SecureCommand}" Executed="OnSecureFile"/>
     </Window.CommandBindings>
@@ -20,7 +20,10 @@
                     <Separator />
                     <MenuItem Header="_Exit" Click="OnExit"/>
                 </MenuItem>
-                <MenuItem Header="_About" Click="OnAbout">
+                <MenuItem Header="_About" >
+                    <MenuItem Header="Images License" Click="OnViewImageLicense"/>
+                    <MenuItem Header="About and Latest version" Click="OnAbout"/>
+                    
                 </MenuItem>
             </Menu>
         </DockPanel>
