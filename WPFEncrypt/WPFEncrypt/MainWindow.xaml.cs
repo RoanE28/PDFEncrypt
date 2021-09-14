@@ -25,6 +25,8 @@ namespace PDFEncrypt
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static RoutedCommand SecureCommand = new RoutedCommand();
+
         private string _header = "PDF Encrypt";
         public string _securedFileLocation = "";
         public string _securedFileName = "";
@@ -32,23 +34,26 @@ namespace PDFEncrypt
         public FileInfo OriginalFileInfo
         {
             get { return _originalFileInfo; }
-            set 
-            { 
+            set
+            {
                 _originalFileInfo = value;
-                txtOriginalFile.Text = _originalFileInfo.FullName;
-                txtOriginalFile.CaretIndex = txtOriginalFile.Text.Length;
+                if (_originalFileInfo != null)
+                {
+                    txtOriginalFile.Text = _originalFileInfo.FullName;
+                    txtOriginalFile.CaretIndex = txtOriginalFile.Text.Length;
 
-                _securedFileLocation = $@"{_originalFileInfo.Directory}\Secuired\";
-                _securedFileName = _originalFileInfo.Name;
-                txtSecuredFile.Text = System.IO.Path.Combine(_securedFileLocation, _securedFileName);
-                txtSecuredFile.CaretIndex = txtSecuredFile.Text.Length;
+                    _securedFileLocation = $@"{_originalFileInfo.Directory}\Secuired\";
+                    _securedFileName = _originalFileInfo.Name;
+                    txtSecuredFile.Text = System.IO.Path.Combine(_securedFileLocation, _securedFileName);
+                    txtSecuredFile.CaretIndex = txtSecuredFile.Text.Length;
+                }
             }
         }
-
 
         public MainWindow()
         {
             InitializeComponent();
+            SecureCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         }
 
         public string OrifinalFileName
@@ -85,6 +90,12 @@ namespace PDFEncrypt
 
         public void OnSecureFile(object sender, RoutedEventArgs e)
         {
+            if (OriginalFileInfo == null)
+            {
+                MessageBox.Show("No file selected.", _header, MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var dialog = new PasswordDialog();
             if (dialog.ShowDialog().GetValueOrDefault())
             {
@@ -96,7 +107,7 @@ namespace PDFEncrypt
         {
             try
             {
-                string sourcePdf = _originalFileInfo.FullName;           
+                string sourcePdf = _originalFileInfo.FullName;
                 string destPdf = System.IO.Path.Combine(_securedFileLocation, _securedFileName);
                 if (!Directory.Exists(_securedFileLocation))
                     Directory.CreateDirectory(_securedFileLocation);
@@ -130,6 +141,11 @@ namespace PDFEncrypt
 
                     }
                 }
+
+                ClearCurrentFileInfo();
+
+                if (MessageBox.Show("The PDF is now password protected. Would you like to open it?", _header, MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                    System.Diagnostics.Process.Start(destPdf);
             }
             catch (iText.Kernel.Crypto.BadPasswordException pex)
             {
@@ -149,6 +165,20 @@ namespace PDFEncrypt
         public void OnAbout(object sender, RoutedEventArgs e)
         {
         }
+
+        private void ClearCurrentFileInfo()
+        {
+            txtOriginalFile.Text = "";
+            txtOriginalFile.CaretIndex = 0;
+
+            _originalFileInfo = null;
+
+            _securedFileLocation = "";
+            _securedFileName = "";
+            txtSecuredFile.Text = "";
+            txtSecuredFile.CaretIndex = 0;
+        }
+
     }
 
 

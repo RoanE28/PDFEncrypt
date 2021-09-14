@@ -19,10 +19,14 @@ namespace PDFEncrypt
     /// </summary>
     public partial class PasswordDialog : Window
     {
+        private string _header = "PDF Encrypt";
+        public static RoutedCommand SecureCommand = new RoutedCommand();
+
         public string Password;
         public PasswordDialog()
         {
             InitializeComponent();
+            SecureCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             txtPassword.Focus();
         }
         private void OnCancel(object sender, RoutedEventArgs e)
@@ -32,7 +36,12 @@ namespace PDFEncrypt
 
         private void OnSecure(object sender, RoutedEventArgs e)
         {
+
             Password = txtPassword.Password;
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                MessageBox.Show("Password can't be empty.", _header, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             this.DialogResult = true;
             this.Close();
         }
