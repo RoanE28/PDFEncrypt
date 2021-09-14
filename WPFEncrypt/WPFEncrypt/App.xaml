@@ -1,7 +1,7 @@
-﻿<Application x:Class="WPFEncrypt.App"
+﻿<Application x:Class="PDFEncrypt.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WPFEncrypt"
+             xmlns:local="clr-namespace:PDFEncrypt"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

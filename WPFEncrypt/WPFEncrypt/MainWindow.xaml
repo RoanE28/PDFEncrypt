@@ -1,9 +1,9 @@
-﻿<Window x:Class="WPFEncrypt.MainWindow"
+﻿<Window x:Class="PDFEncrypt.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFEncrypt"
+        xmlns:local="clr-namespace:PDFEncrypt"
         mc:Ignorable="d"
         
         Title="MainWindow" Height="276" Width="586">
@@ -14,11 +14,11 @@
                     <MenuItem Header="_Open" Click="OnOpenfile"/>
                     <MenuItem Header="_Secure" />
                     <Separator />
-                    <MenuItem Header="_Exit" />
+                    <MenuItem Header="_Exit" Click="OnExit"/>
                 </MenuItem>
-                <MenuItem Header="_Settings">
-                </MenuItem>
-                <MenuItem Header="_About">
+                <!--<MenuItem Header="_Settings">
+                </MenuItem>-->
+                <MenuItem Header="_About" Click="OnAbout">
                 </MenuItem>
             </Menu>
         </DockPanel>

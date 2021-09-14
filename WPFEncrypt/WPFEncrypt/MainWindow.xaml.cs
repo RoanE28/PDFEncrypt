@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFEncrypt
+namespace PDFEncrypt
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -139,6 +139,15 @@ namespace WPFEncrypt
             {
                 MessageBox.Show(ex.Message, _header, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void OnExit(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        public void OnAbout(object sender, RoutedEventArgs e)
+        {
         }
     }
 
